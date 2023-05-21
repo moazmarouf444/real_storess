@@ -15,11 +15,13 @@
                         <span class="checkmark"></span>
                     </label>
                 </th>
-                <th>{{awtTrans('الصوره')}}</th>
                 <th>{{awtTrans('الاسم')}}</th>
-                <th>{{awtTrans('البريد الالكتروني')}}</th>
-                <th>{{awtTrans('رقم الهاتف')}}</th>
-                <th>{{awtTrans('حالة الحظر')}}</th>
+                <th>{{awtTrans('التصنيف')}}</th>
+                <th>{{awtTrans('الماركه')}}</th>
+                <th>{{awtTrans('السعر ')}}</th>
+                <th>{{awtTrans('سعر البيع')}}</th>
+                <th>{{awtTrans('الكميه')}}</th>
+                <th>{{awtTrans('حاله التفعيل')}}</th>
                 <th>{{awtTrans('التحكم')}}</th>
             </tr>
         </thead>
@@ -32,21 +34,13 @@
                         <span class="checkmark"></span>
                         </label>
                     </td>
-                    <td><img src="{{$product->image}}" width="50px" height="50px" alt=""></td>
                     <td>{{ $product->name }}</td>
-                    <td>{{ $product->email }}</td>
-                    <td>{{ $product->phone }}</td>
-                    <td>
-                        @if ($product->is_blocked)
-                        <span class="btn btn-sm round btn-outline-danger">
-                            {{ awtTrans('محظور') }} <i class="la la-close font-medium-2"></i>
-                        </span>
-                        @else
-                        <span class="btn btn-sm round btn-outline-success">
-                            {{ awtTrans('غير محظور') }} <i class="la la-check font-medium-2"></i>
-                        </span>
-                        @endif
-                    </td>
+                    <td>{{ $product->category->name }}</td>
+                    <td>{{ $product->brand->name }}</td>
+                    <td>{{ $product->price }}</td>
+                    <td>{{ $product->selling_price }}</td>
+                    <td>{{ $product->qty }}</td>
+                    <td>{{ $product->getActive() }}</td>
                     
                     <td class="product-action"> 
                         <span class="text-primary"><a href="{{ route('admin.products.show', ['id' => $product->id]) }}"><i class="feather icon-eye"></i></a></span>

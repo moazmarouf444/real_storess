@@ -31,7 +31,7 @@ class BrandController extends Controller
     public function store(Store $request)
     {
         Brand::create($request->validated());
-        Report::addToLog('  اضافه منطقه توصيل') ;
+        Report::addToLog('  اضافه ماركه') ;
         return response()->json(['url' => route('admin.brands.index')]);
     }
     public function edit($id)
@@ -43,7 +43,7 @@ class BrandController extends Controller
     public function update(Update $request, $id)
     {
         $brand = Brand::findOrFail($id)->update($request->validated());
-        Report::addToLog('  تعديل منطقه توصيل') ;
+        Report::addToLog('  تعديل ماركه') ;
         return response()->json(['url' => route('admin.brands.index')]);
     }
 
@@ -55,19 +55,19 @@ class BrandController extends Controller
     public function destroy($id)
     {
         $brand = Brand::findOrFail($id)->delete();
-        Report::addToLog('  حذف منطقه توصيل') ;
+        Report::addToLog('  حذف ماركه') ;
         return response()->json(['id' =>$id]);
     }
 
     public function destroyAll(Request $request)
     {
         $requestIds = json_decode($request->data);
-        
+
         foreach ($requestIds as $id) {
             $ids[] = $id->id;
         }
         if (Brand::WhereIn('id',$ids)->get()->each->delete()) {
-            Report::addToLog('  حذف العديد من مناطق التوصيل') ;
+            Report::addToLog('  حذف العديد من ماركات') ;
             return response()->json('success');
         } else {
             return response()->json('failed');

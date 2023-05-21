@@ -623,6 +623,16 @@ return [
 "لا يوجد نتائج مطابقة"=>"There are no matches matching",
 "تنشيط او الغاء تنشيط كوبون"=>"Activate or cancel a coupon",
 "حالات المشاريع"=>"Project cases",
+"حالة التفعيل "=>"Activation state",
+"ماركات"=>"brand names",
+"ماركات"=>"brand names",
+"الدول"=>"Countries",
+"المحافظات "=>"Provinces",
+"التصنيفات"=>"Classifications",
+"المنتجات"=>"Products",
+"ماركات"=>"brand names",
+"مناطق التوصيل"=>"Delivery areas",
+"حالة التفعيل"=>"Activation state",
     #AWTLINEHELPER
     #don`t Remove the up line at all
 

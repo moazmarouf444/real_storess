@@ -6,10 +6,20 @@ use Spatie\Translatable\HasTranslations;
 
 class Brand extends BaseModel
 {
-    const IMAGEPATH = 'brands' ; 
+    const IMAGEPATH = 'brands' ;
 
-    use HasTranslations; 
-    protected $fillable = ['title','description' ,'image'];
-    public $translatable = ['title','description'];
+    use HasTranslations;
+    protected $guarded =[];
 
+    public $translatable = ['name'];
+
+    protected $casts = [
+        'active'      => 'boolean',
+    ];
+    public function scopeActive($query){
+        return $query -> where('active',1) ;
+    }
+    public function getActive(){
+        return  $this -> active  == 0 ?  awtTrans('غير مفعل ')   :  awtTrans(' مفعل ')  ;
+    }
 }

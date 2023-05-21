@@ -14,10 +14,18 @@ class Store extends FormRequest
     public function rules()
     {
         return [
-            'name'                  => 'required|max:191',
-            'phone'                 => 'required|numeric|unique:users,phone',
-            'email'                 => 'required|email|max:191|unique:users,email',
-            'password'              => ['required','max:191'],
+            'name.ar'                  => 'required|max:191',
+            'name.en'                  => 'required|max:191',
+            'description.ar'                  => 'required',
+            'description.en'                  => 'required',
+            'price' => 'required|min:0',
+            'is_active' => 'required|in:0,1',
+            'selling_price' => 'required|min:0',
+            'category_id' => 'required|exists:categories,id',
+            'brand_id' => 'required|exists:brands,id',
+            'images'     => 'required|array',
+            'images.*'   => 'required|image',
+
         ];
     }
 }

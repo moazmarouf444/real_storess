@@ -18,15 +18,7 @@
             'input_type' => 'text' , 
             'input_name' => awtTrans('الاسم') , 
         ] ,
-        'phone' => [
-            'input_type' => 'text' , 
-            'input_name' => awtTrans('رقم الهاتف') , 
-        ] ,
-        'email' => [
-            'input_type' => 'text' ,
-            'input_name' => awtTrans('الايميل') ,
-        ] ,
-        'active' => [
+        'is_active' => [
             'input_type' => 'select' , 
             'rows'       => [
               '1' => [
@@ -38,7 +30,7 @@
                 'id' => 0 , 
               ],
             ] , 
-            'input_name' => awtTrans('حالة تفعيل الهاتف') , 
+            'input_name' => awtTrans('حالة تفعيل المنتج') ,
         ] ,
 
       

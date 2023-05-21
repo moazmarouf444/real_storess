@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Brand;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\products\Store;
@@ -24,13 +26,27 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('admin.products.create');
+        $brands = Brand::active()->select('id','name')->get();
+        $categories = Category::select('id','name')->get();
+        return view('admin.products.create',compact('brands','categories'));
     }
 
 
     public function store(Store $request)
     {
-        Product::create($request->validated());
+        if (!$request->has('is_active'))
+            $request->request->add(['is_active' => 0]);
+        else
+            $request->request->add(['is_active' => 1]);
+
+        $product =   Product::create($request->validated()+ ['is_active' => $request->is_active]);
+        if ($request->images) {
+            foreach ($request->images as $file) {
+                $product->photo()->create([
+                    'file' => $file
+                ]);
+            }
+        }
         Report::addToLog('  اضافه منتج') ;
         return response()->json(['url' => route('admin.products.index')]);
     }

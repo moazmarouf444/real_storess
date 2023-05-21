@@ -7,13 +7,13 @@
 
 @section('content')
 
-<x-admin.table 
-    datefilter="true" 
-    order="true" 
-    extrabuttons="true"
-    addbutton="{{ route('admin.brands.create') }}" 
-    deletebutton="{{ route('admin.brands.deleteAll') }}" 
-    :searchArray="[
+    <x-admin.table
+            datefilter="true"
+            order="true"
+            extrabuttons="true"
+            addbutton="{{ route('admin.brands.create') }}"
+            deletebutton="{{ route('admin.brands.deleteAll') }}"
+            :searchArray="[
         'name' => [
             'input_type' => 'text' , 
             'input_name' => awtTrans('الاسم') , 
@@ -36,23 +36,22 @@
             ] , 
             'input_name' => awtTrans('حالة التفعيل ') ,
         ] ,
+    ]"
+    >
 
-    ]" 
->
+        <x-slot name="extrabuttonsdiv">
+            {{-- <a type="button" data-toggle="modal" data-target="#notify" class="btn bg-gradient-info mr-1 mb-1 waves-effect waves-light notify" data-id="all"><i class="feather icon-bell"></i> {{ awtTrans('ارسال اشعار') }}</a> --}}
+        </x-slot>
 
-    <x-slot name="extrabuttonsdiv">
-        {{-- <a type="button" data-toggle="modal" data-target="#notify" class="btn bg-gradient-info mr-1 mb-1 waves-effect waves-light notify" data-id="all"><i class="feather icon-bell"></i> {{ awtTrans('ارسال اشعار') }}</a> --}}
-    </x-slot>
-
-    <x-slot name="tableContent">
-        <div class="table_content_append">
-            {{-- table content will appends here  --}}
-        </div>
-    </x-slot>
-</x-admin.table>
+        <x-slot name="tableContent">
+            <div class="table_content_append">
+                {{-- table content will appends here  --}}
+            </div>
+        </x-slot>
+    </x-admin.table>
 
 
-    
+
 @endsection
 
 @section('js')

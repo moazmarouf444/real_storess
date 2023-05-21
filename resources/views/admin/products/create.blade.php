@@ -1,8 +1,10 @@
 @extends('admin.layout.master')
 {{-- extra css files --}}
 @section('css')
-    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/css-rtl/plugins/forms/validation/form-validation.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('admin/app-assets/vendors/css/extensions/sweetalert2.min.css')}}">
+    <link rel="stylesheet" type="text/css"
+          href="{{asset('admin/app-assets/css-rtl/plugins/forms/validation/form-validation.css')}}">
+    <link rel="stylesheet" type="text/css"
+          href="{{asset('admin/app-assets/vendors/css/extensions/sweetalert2.min.css')}}">
 
     <style>
         .upload_alotImg {
@@ -19,7 +21,7 @@
             font-weight: bolder
         }
 
-        .upload_alotImg>input {
+        .upload_alotImg > input {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -39,7 +41,7 @@
             margin: 10px;
         }
 
-        .img-uploaded-one>img {
+        .img-uploaded-one > img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -68,128 +70,158 @@
 {{-- extra css files --}}
 
 @section('content')
-<!-- // Basic multiple Column Form section start -->
-<section id="multiple-column-form">
-    <div class="row match-height">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">{{awtTrans('اضافه منتج ')}}</h4>
-                </div>
-                <div class="card-content">
-                    <div class="card-body">
-                        <form  method="POST" action="{{route('admin.products.store')}}" class="store form-horizontal" novalidate>
-                            @csrf
-                            <div class="form-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="imgMontg col-12 text-center">
-                                            <div class="dropBox">
-                                                <div class="textCenter">
-                                                    <div class="imagesUploadBlock">
-                                                        <label class="uploadImg">
-                                                            <span><i class="feather icon-image"></i></span>
-                                                            <input type="file" accept="image/*" name="image" class="imageUploader">
-                                                        </label>
+    <!-- // Basic multiple Column Form section start -->
+    <section id="multiple-column-form">
+        <div class="row match-height">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">{{awtTrans('اضافه منتج ')}}</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form method="POST" action="{{route('admin.products.store')}}" class="store form-horizontal"
+                                  novalidate>
+                                @csrf
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        @foreach (languages() as $lang)
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="first-name-column">{{__('site.name_'.$lang)}}</label>
+                                                    <div class="controls">
+                                                        <input type="text" name="name[{{$lang}}]" class="form-control"
+                                                               placeholder="{{__('site.write') . __('site.name_'.$lang)}}"
+                                                               required
+                                                               data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}">
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    {{-- @foreach (languages() as $lang)
-                                        <div class="col-md-6 col-12">
+                                        @endforeach
+                                        <div class="col-6">
                                             <div class="form-group">
-                                                <label for="first-name-column">{{__('site.name_'.$lang)}}</label>
+                                                <label for="first-name-column">{{awtTrans('السعر')}}</label>
                                                 <div class="controls">
-                                                    <input type="text" name="name[{{$lang}}]" class="form-control" placeholder="{{__('site.write') . __('site.name_'.$lang)}}" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
+                                                    <input type="number" name="price" class="form-control"
+                                                           placeholder="{{awtTrans('اكتب السعر')}}" required
+                                                           data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}">
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach --}}
 
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('الاسم')}}</label>
-                                            <div class="controls">
-                                                <input type="text" name="name" class="form-control" placeholder="{{awtTrans('اكتب الاسم')}}" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="first-name-column">{{awtTrans('سعر البيع')}}</label>
+                                                <div class="controls">
+                                                    <input type="number" name="selling_price" class="form-control"
+                                                           placeholder="{{awtTrans('اكتب سعر البيع')}}" required
+                                                           data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('رقم الهاتف')}}</label>
-                                            <div class="controls">
-                                                <input type="number" name="phone" class="form-control" placeholder="{{awtTrans('اكتب رقم الهاتف')}}" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('البريد الالكتروني')}}</label>
-                                            <div class="controls">
-                                                <input type="email" name="email" class="form-control" placeholder="{{awtTrans('اكتب البريد الالكتروني')}}" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('كلمة السر')}}</label>
-                                            <div class="controls">
-                                                <input type="password" name="password" class="form-control"  required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <div class="controls">
-                                                <label for="account-name">{{awtTrans('عن التطبيق ')}}</label>
-                                                <textarea class="form-control" name="intro_about" id="" cols="30" rows="10" placeholder="{{awtTrans('عن التطبيق')}}"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <div class="col-md-12 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('حالة الحظر')}}</label>
-                                            <div class="controls">
-                                                <select name="block" class="select2 form-control" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
-                                                    <option value>{{awtTrans('اختر حالة الحظر')}}</option>
-                                                    <option value="1">{{awtTrans('محظور')}}</option>
-                                                    <option value="0">{{awtTrans('غير محظور')}}</option>
-                                                </select>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="first-name-column">{{awtTrans('الكميه ')}}</label>
+                                                <div class="controls">
+                                                    <input type="number" name="qty" class="form-control"
+                                                           placeholder="{{awtTrans('اكتب الكميه')}}" required
+                                                           data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}">
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    {{-- <div class="col-md-12 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">{{awtTrans('الصلاحية')}}</label>
-                                            <div class="controls">
-                                                <select name="role_id" class="select2 form-control" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
-                                                    <option value>{{awtTrans('اختر الصلاحية')}}</option>
-                                                    @foreach ($roles as $role)
-                                                        <option value="{{$role->id}}">{{$role->name}}</option>
-                                                    @endforeach
-                                                </select>
+
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <label for="first-name-column">{{awtTrans('حالة التفعيل')}}</label>
+                                                <div class="controls">
+                                                    <select name="is_active" class="select2 form-control" required
+                                                            data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}">
+                                                        <option value>{{awtTrans('اختر حالة التفعيل')}}</option>
+                                                        <option value="1">{{awtTrans('مفعل')}}</option>
+                                                        <option value="0">{{awtTrans('غير مفعل')}}</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div> --}}
+                                        <div class="col-md-6 col-6">
+                                            <div class="form-group">
+                                                <label for="first-name-column">{{awtTrans('التصنيف')}}</label>
+                                                <div class="controls">
+                                                    <select name="category_id" class="select2 form-control" required
+                                                            data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}">
+                                                        <option value>{{awtTrans('اختر التصنيف')}}</option>
+                                                        @if($categories && $categories -> count() > 0)
+                                                            @foreach($categories as $category)
+                                                                <option value="{{$category -> id }}">{{$category -> name}}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 col-6">
+                                            <div class="form-group">
+                                                <label for="first-name-column">{{awtTrans('الماركه')}}</label>
+                                                <div class="controls">
+                                                    <select name="brand_id" class="select2 form-control" required
+                                                            data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}">
+                                                        <option value>{{awtTrans('اختر الماركه')}}</option>
+                                                        @if($brands && $brands -> count() > 0)
+                                                            @foreach($brands as $brand)
+                                                                <option
+                                                                        value="{{$brand -> id }}">{{$brand -> name}}</option>
+                                                            @endforeach
+                                                        @endif
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        @foreach (languages() as $lang)
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="account-name">{{__('site.description_'.$lang)}}</label>
+                                                    <textarea class="form-control" name="description[{{$lang}}]"
+                                                              id="description[{{$lang}}]" cols="30" rows="10"
+                                                              placeholder="{{awtTrans('الوصف')}}"></textarea>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                        <div class="col-12" style="text-align: center">
+                                            <h4 class="card-title">{{awtTrans('اضافه مجموعه من الصور ')}}</h4>
+                                            <div
+                                                    class="d-flex flex-wrap align-items-center file_alotImage mb-3">
+                                                <div class="upload_alotImg">
+                                                    <span>+</span>
+                                                    <input class="img-input" id="up-img-all" type="file"
+                                                           accept="image/*" name="images[]" multiple/>
+                                                </div>
+                                                @error('images')
+                                                <span class="text-danger">{{$message}}</span>
+                                                @enderror
+
+                                            </div>
+                                        </div>
 
 
-
-                                    <div class="col-12 d-flex justify-content-center mt-3">
-                                        <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{awtTrans('اضافة')}}</button>
-                                        <a href="{{ url()->previous() }}" type="reset" class="btn btn-outline-warning mr-1 mb-1">{{awtTrans(' رجوع ')}}</a>
+                                        <div class="col-12 d-flex justify-content-center mt-3">
+                                            <button type="submit"
+                                                    class="btn btn-primary mr-1 mb-1 submit_button">{{awtTrans('اضافة')}}</button>
+                                            <a href="{{ url()->previous() }}" type="reset"
+                                               class="btn btn-outline-warning mr-1 mb-1">{{awtTrans(' رجوع ')}}</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 @endsection
 @section('js')
@@ -197,13 +229,13 @@
     <script src="{{asset('admin/app-assets/js/scripts/forms/validation/form-validation.js')}}"></script>
     <script src="{{asset('admin/app-assets/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
     <script src="{{asset('admin/app-assets/js/scripts/extensions/sweet-alerts.js')}}"></script>
-    
+
     {{-- show selected image script --}}
-        @include('admin.shared.addImage')
+    @include('admin.shared.addImage')
     {{-- show selected image script --}}
 
     {{-- submit add form script --}}
-        @include('admin.shared.submitAddForm')
+    @include('admin.shared.submitAddForm')
     {{-- submit add form script --}}
     <script>
         $(document).on('change', '#mangeStock', function () {
@@ -227,6 +259,34 @@
         $(document).on('click', '.remove-appendedd', function () {
             $(this).parent().remove();
         });
+    </script>
+    <script>
+        $(document).on('change', '#mangeStock', function () {
+
+            if ($(this).val() == 1) {
+
+                $('#qtyDiv').show();
+            } else {
+                $('#qtyDiv').hide();
+
+            }
+        });
+    </script>
+    <script>
+        $(document).on('change', '#up-img-all', function (event) {
+            for (var i = 0; i <= event.target.files.length; i++) {
+                $('.file_alotImage').append('<div id="remove-div' + i + '" class="img-uploaded-one"><span class="remove-appendedd" onClick="removeParent(' + i + ')" >X</span><img src="' + URL.createObjectURL(event.target.files[i]) + '" alt=""></div>');
+            }
+        });
+
+        $(document).on('click', '.remove-appendedd', function () {
+            $(this).parent().remove();
+        });
+    </script>
+    <script src="https://cdn.ckeditor.com/4.16.2/full-all/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('description[{{"ar"}}]');
+        CKEDITOR.replace('description[{{"en"}}]');
     </script>
 
 @endsection
