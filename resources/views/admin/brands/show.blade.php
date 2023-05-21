@@ -70,7 +70,7 @@
                                     </div>
                                 </div> --}}
                                 <div class="col-12 d-flex justify-content-center mt-3">
-                                    <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{awtTrans('تعديل')}}</button>
+                                    <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{awtTrans('عرض')}}</button>
                                     <a href="{{ url()->previous() }}" type="reset" class="btn btn-outline-warning mr-1 mb-1">{{awtTrans(' رجوع ')}}</a>
                                 </div>
                             </div>
