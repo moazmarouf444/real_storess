@@ -776,7 +776,69 @@ Route::group([
             'title' => 'حذف مجموعه من منتجات'
         ]);
     /*------------ end Of products ----------*/
+    
+    /*------------ start Of brands ----------*/
+        Route::get('brands', [
+            'uses'      => 'BrandController@index',
+            'as'        => 'brands.index',
+            'title'     => 'ماركات',
+            'icon'      => '<i class="feather icon-image"></i>',
+            'type'      => 'parent',
+            'sub_route' => false,
+            'child'     => ['brands.create', 'brands.store','brands.edit', 'brands.update', 'brands.show', 'brands.delete'  ,'brands.deleteAll' ,]
+        ]);
+
+        # brands store
+        Route::get('brands/create', [
+            'uses'  => 'BrandController@create',
+            'as'    => 'brands.create',
+            'title' => ' صفحة اضافة ماركه'
+        ]);
+        
+
+        # brands store
+        Route::post('brands/store', [
+            'uses'  => 'BrandController@store',
+            'as'    => 'brands.store',
+            'title' => ' اضافة ماركه'
+        ]);
+
+        # brands update
+        Route::get('brands/{id}/edit', [
+            'uses'  => 'BrandController@edit',
+            'as'    => 'brands.edit',
+            'title' => 'صفحه تحديث ماركه'
+        ]);
+
+        # brands update
+        Route::put('brands/{id}', [
+            'uses'  => 'BrandController@update',
+            'as'    => 'brands.update',
+            'title' => 'تحديث ماركه'
+        ]);
+
+        # brands show
+        Route::get('brands/{id}/Show', [
+            'uses'  => 'BrandController@show',
+            'as'    => 'brands.show',
+            'title' => 'صفحه عرض  ماركه  '
+        ]);
+
+        # brands delete
+        Route::delete('brands/{id}', [
+            'uses'  => 'BrandController@destroy',
+            'as'    => 'brands.delete',
+            'title' => 'حذف ماركه'
+        ]);
+        #delete all brands
+        Route::post('delete-all-brands', [
+            'uses'  => 'BrandController@destroyAll',
+            'as'    => 'brands.deleteAll',
+            'title' => 'حذف مجموعه من ماركات'
+        ]);
+    /*------------ end Of brands ----------*/
     #new_routes_here
+                     
                      
   });
 
