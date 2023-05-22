@@ -65,19 +65,6 @@
                                             </div>
                                         </div>
 
-                                        {{-- <div class="col-md-12 col-12">
-                                            <div class="form-group">
-                                                <label for="first-name-column">{{awtTrans('الصلاحية')}}</label>
-                                                <div class="controls">
-                                                    <select name="role_id" class="select2 form-control" required data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}" >
-                                                        <option value>{{awtTrans('اختر الصلاحية')}}</option>
-                                                        @foreach ($roles as $role)
-                                                            <option {{$role->id == $brand->role_id ? 'selected' : ''}} value="{{$role->id}}">{{$role->name}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div> --}}
                                         <div class="col-12 d-flex justify-content-center mt-3">
                                             <button type="submit" class="btn btn-primary mr-1 mb-1 submit_button">{{awtTrans('تعديل')}}</button>
                                             <a href="{{ url()->previous() }}" type="reset" class="btn btn-outline-warning mr-1 mb-1">{{awtTrans(' رجوع ')}}</a>

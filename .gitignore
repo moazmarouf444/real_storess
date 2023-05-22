@@ -2,7 +2,6 @@
 /nodeServer/node_modules
 /nodeServer/package-lock.json
 /public/hot
-/public/storage
 /public/assets/uploads
 /storage/*.key
 /storage/framework/cache/

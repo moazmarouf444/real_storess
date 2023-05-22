@@ -30,8 +30,8 @@ class Product extends BaseModel
         return  $this -> is_active  == 0 ?  awtTrans('غير مفعل ')   :  awtTrans(' مفعل ')  ;
     }
 
-    public function photo() {
-        return $this->morphMany(Atachment::class, 'attachmentable');
+    public function photos() {
+        return $this->morphMany(Photo::class, 'photoable');
     }
 
     public static function boot() {

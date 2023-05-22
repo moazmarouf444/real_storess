@@ -18,14 +18,14 @@
                     $('.store input').removeClass('border-danger')
                     $(".submit_button").html("{{awtTrans('تعديل')}}").attr('disable',false)
                     Swal.fire({
-                                position: 'top-start',
-                                type: 'success',
-                                title: '{{awtTrans('تمت التعديل بنجاح')}}',
-                                showConfirmButton: false,
-                                timer: 1500,
-                                confirmButtonClass: 'btn btn-primary',
-                                buttonsStyling: false,
-                            })
+                        position: 'top-start',
+                        type: 'success',
+                        title: '{{awtTrans('تمت التعديل بنجاح')}}',
+                        showConfirmButton: false,
+                        timer: 1500,
+                        confirmButtonClass: 'btn btn-primary',
+                        buttonsStyling: false,
+                    })
                     setTimeout(function(){
                         window.location.replace(response.url)
                     }, 1000);

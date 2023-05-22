@@ -98,7 +98,7 @@
     </x-slot>
 </x-admin.table>
   {{-- notify users model --}}
-  <x-admin.NotifyAll route="{{ route('admin.clients.notify') }}" />
+{{--  <x-admin.NotifyAll route="{{ route('admin.clients.notify') }}" />--}}
   {{-- notify users model --}}
 @endsection
 

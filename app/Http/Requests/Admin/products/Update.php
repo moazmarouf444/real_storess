@@ -14,12 +14,18 @@ class Update extends FormRequest
     public function rules()
     {
         return [
-            'name'                  => 'required|max:191',
-            'phone'                 => 'required|numeric|unique:users,phone,'.$this->id,
-            'email'                 => 'required|email|max:191|unique:users,email,'.$this->id,
-            'type'                  => 'required_if:type,good',
-            'password'              => ['nullable','max:191'],
-            'avatar'                => ['nullable','image'],
+            'name.ar'                  => 'required|max:191',
+            'name.en'                  => 'required|max:191',
+            'description.ar'                  => 'required',
+            'description.en'                  => 'required',
+            'price' => 'required|min:0',
+            'qty' => 'required|min:0',
+            'is_active' => 'required|in:0,1',
+            'selling_price' => 'required|min:0',
+            'category_id' => 'required|exists:categories,id',
+            'brand_id' => 'nullable|exists:brands,id',
+//            'images'     => 'nullable|array',
+//            'images.*'   => 'nullable|image',
         ];
     }
 }

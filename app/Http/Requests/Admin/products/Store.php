@@ -19,12 +19,13 @@ class Store extends FormRequest
             'description.ar'                  => 'required',
             'description.en'                  => 'required',
             'price' => 'required|min:0',
+            'qty' => 'required|min:0',
             'is_active' => 'required|in:0,1',
             'selling_price' => 'required|min:0',
             'category_id' => 'required|exists:categories,id',
-            'brand_id' => 'required|exists:brands,id',
-            'images'     => 'required|array',
-            'images.*'   => 'required|image',
+            'brand_id' => 'nullable|exists:brands,id',
+//            'images'     => 'required|array',
+//            'images.*'   => 'required|image',
 
         ];
     }

@@ -167,6 +167,255 @@ Route::group([
       ]);
 
     /************ #Admins ************/
+      /*------------ start Of products ----------*/
+      Route::get('products', [
+          'uses'      => 'ProductController@index',
+          'as'        => 'products.index',
+          'title'     => 'المنتجات',
+          'icon'      => '<i class="feather icon-image"></i>',
+          'type'      => 'parent',
+          'sub_route' => false,
+          'child'     => ['products.create', 'products.store','products.edit', 'products.update', 'products.show', 'products.delete'  ,'products.deleteAll' ,]
+      ]);
+
+      # products store
+      Route::get('products/create', [
+          'uses'  => 'ProductController@create',
+          'as'    => 'products.create',
+          'title' => ' صفحة اضافة منتج'
+      ]);
+
+
+      # products store
+      Route::post('products/store', [
+          'uses'  => 'ProductController@store',
+          'as'    => 'products.store',
+          'title' => ' اضافة منتج'
+      ]);
+
+      # products update
+      Route::get('products/{id}/edit', [
+          'uses'  => 'ProductController@edit',
+          'as'    => 'products.edit',
+          'title' => 'صفحه تحديث منتج'
+      ]);
+
+      # products update
+      Route::put('products/{id}', [
+          'uses'  => 'ProductController@update',
+          'as'    => 'products.update',
+          'title' => 'تحديث منتج'
+      ]);
+
+      # products show
+      Route::get('products/{id}/Show', [
+          'uses'  => 'ProductController@show',
+          'as'    => 'products.show',
+          'title' => 'صفحه عرض  منتج  '
+      ]);
+
+      # products delete
+      Route::delete('products/{id}', [
+          'uses'  => 'ProductController@destroy',
+          'as'    => 'products.delete',
+          'title' => 'حذف منتج'
+      ]);
+      #delete all products
+      Route::post('delete-all-products', [
+          'uses'  => 'ProductController@destroyAll',
+          'as'    => 'products.deleteAll',
+          'title' => 'حذف مجموعه من منتجات'
+      ]);
+      /*------------ end Of products ----------*/
+      /*------------ start Of categories ----------*/
+      Route::get('categories-show/{id?}', [
+          'uses'      => 'CategoryController@index',
+          'as'        => 'categories.index',
+          'title'     => 'التصنيفات',
+          'icon'      => '<i class="feather icon-list"></i>',
+          'type'      => 'parent',
+          'sub_route' => false,
+          'child'     => ['categories.export','categories.create', 'categories.store', 'categories.edit', 'categories.update', 'categories.delete', 'categories.deleteAll', 'categories.show'],
+      ]);
+
+      # categories store
+      Route::get('categories/export', [
+          'uses'  => 'CategoryController@export',
+          'as'    => 'categories.export',
+          'title' => ' تصدير ',
+      ]);
+      # categories store
+      Route::get('categories/create/{id?}', [
+          'uses'  => 'CategoryController@create',
+          'as'    => 'categories.create',
+          'title' => ' صفحة اضافة تصنيف',
+      ]);
+
+      # categories store
+      Route::post('categories/store', [
+          'uses'  => 'CategoryController@store',
+          'as'    => 'categories.store',
+          'title' => ' اضافة تصنيف',
+      ]);
+
+      # categories update
+      Route::get('categories/{id}/edit', [
+          'uses'  => 'CategoryController@edit',
+          'as'    => 'categories.edit',
+          'title' => 'صفحه تحديث تصنيف',
+      ]);
+
+      # categories update
+      Route::put('categories/{id}', [
+          'uses'  => 'CategoryController@update',
+          'as'    => 'categories.update',
+          'title' => 'تحديث تصنيف',
+      ]);
+
+      Route::get('categories/{id}/show', [
+          'uses'  => 'CategoryController@show',
+          'as'    => 'categories.show',
+          'title' => 'عرض تصنيف',
+      ]);
+
+      # categories delete
+      Route::delete('categories/{id}', [
+          'uses'  => 'CategoryController@destroy',
+          'as'    => 'categories.delete',
+          'title' => 'حذف تصنيف',
+      ]);
+      #delete all categories
+      Route::post('delete-all-categories', [
+          'uses'  => 'CategoryController@destroyAll',
+          'as'    => 'categories.deleteAll',
+          'title' => 'حذف مجموعه من التصنيفات',
+      ]);
+      /*------------ end Of categories ----------*/
+      /*------------ start Of brands ----------*/
+      Route::get('brands', [
+          'uses'      => 'BrandController@index',
+          'as'        => 'brands.index',
+          'title'     => 'ماركات',
+          'icon'      => '<i class="feather icon-image"></i>',
+          'type'      => 'parent',
+          'sub_route' => false,
+          'child'     => ['brands.create', 'brands.store','brands.edit', 'brands.update', 'brands.show', 'brands.delete'  ,'brands.deleteAll' ,]
+      ]);
+
+      # brands store
+      Route::get('brands/create', [
+          'uses'  => 'BrandController@create',
+          'as'    => 'brands.create',
+          'title' => ' صفحة اضافة ماركه'
+      ]);
+
+
+      # brands store
+      Route::post('brands/store', [
+          'uses'  => 'BrandController@store',
+          'as'    => 'brands.store',
+          'title' => ' اضافة ماركه'
+      ]);
+
+      # brands update
+      Route::get('brands/{id}/edit', [
+          'uses'  => 'BrandController@edit',
+          'as'    => 'brands.edit',
+          'title' => 'صفحه تحديث ماركه'
+      ]);
+
+      # brands update
+      Route::put('brands/{id}', [
+          'uses'  => 'BrandController@update',
+          'as'    => 'brands.update',
+          'title' => 'تحديث ماركه'
+      ]);
+
+      # brands show
+      Route::get('brands/{id}/Show', [
+          'uses'  => 'BrandController@show',
+          'as'    => 'brands.show',
+          'title' => 'صفحه عرض  ماركه  '
+      ]);
+
+      # brands delete
+      Route::delete('brands/{id}', [
+          'uses'  => 'BrandController@destroy',
+          'as'    => 'brands.delete',
+          'title' => 'حذف ماركه'
+      ]);
+      #delete all brands
+      Route::post('delete-all-brands', [
+          'uses'  => 'BrandController@destroyAll',
+          'as'    => 'brands.deleteAll',
+          'title' => 'حذف مجموعه من ماركات'
+      ]);
+      /*------------ end Of brands ----------*/
+      /*------------ start Of coupons ----------*/
+      Route::get('coupons', [
+          'uses'      => 'CouponController@index',
+          'as'        => 'coupons.index',
+          'title'     => 'كوبونات الخصم',
+          'icon'      => '<i class="fa fa-gift"></i>',
+          'type'      => 'parent',
+          'sub_route' => false,
+          'child'     => ['coupons.show', 'coupons.create', 'coupons.store', 'coupons.edit', 'coupons.update', 'coupons.delete', 'coupons.deleteAll', 'coupons.renew'],
+      ]);
+
+      Route::get('coupons/{id}/show', [
+          'uses'  => 'CouponController@show',
+          'as'    => 'coupons.show',
+          'title' => 'عرض  كوبون خصم',
+      ]);
+
+      # coupons store
+      Route::get('coupons/create', [
+          'uses'  => 'CouponController@create',
+          'as'    => 'coupons.create',
+          'title' => ' صفحة اضافة كوبون خصم',
+      ]);
+
+      # coupons store
+      Route::post('coupons/store', [
+          'uses'  => 'CouponController@store',
+          'as'    => 'coupons.store',
+          'title' => ' اضافة كوبون خصم',
+      ]);
+
+      # coupons update
+      Route::get('coupons/{id}/edit', [
+          'uses'  => 'CouponController@edit',
+          'as'    => 'coupons.edit',
+          'title' => 'صفحه تحديث كوبون خصم',
+      ]);
+
+      # coupons update
+      Route::put('coupons/{id}', [
+          'uses'  => 'CouponController@update',
+          'as'    => 'coupons.update',
+          'title' => 'تحديث كوبون خصم',
+      ]);
+
+      # renew coupon
+      Route::post('coupons/renew', [
+          'uses'  => 'CouponController@renew',
+          'as'    => 'coupons.renew',
+          'title' => 'تحديث حالة كوبون خصم',
+      ]);
+
+      # coupons delete
+      Route::delete('coupons/{id}', [
+          'uses'  => 'CouponController@destroy',
+          'as'    => 'coupons.delete',
+          'title' => 'حذف كوبون خصم',
+      ]);
+      #delete all coupons
+      Route::post('delete-all-coupons', [
+          'uses'  => 'CouponController@destroyAll',
+          'as'    => 'coupons.deleteAll',
+          'title' => 'حذف مجموعه من كوبونات الخصم',
+      ]);
+      /*------------ end Of coupons ----------*/
 
 //    /*------------ start Of notifications ----------*/
 //      Route::get('notifications', [
@@ -305,136 +554,7 @@ Route::group([
       ]);
     /*------------ end Of cities ----------*/
 
-    /*------------ start Of categories ----------*/
-      Route::get('categories-show/{id?}', [
-        'uses'      => 'CategoryController@index',
-        'as'        => 'categories.index',
-        'title'     => 'التصنيفات',
-        'icon'      => '<i class="feather icon-list"></i>',
-        'type'      => 'parent',
-        'sub_route' => false,
-        'child'     => ['categories.export','categories.create', 'categories.store', 'categories.edit', 'categories.update', 'categories.delete', 'categories.deleteAll', 'categories.show'],
-      ]);
 
-      # categories store
-      Route::get('categories/export', [
-        'uses'  => 'CategoryController@export',
-        'as'    => 'categories.export',
-        'title' => ' تصدير ',
-      ]);
-      # categories store
-      Route::get('categories/create/{id?}', [
-        'uses'  => 'CategoryController@create',
-        'as'    => 'categories.create',
-        'title' => ' صفحة اضافة تصنيف',
-      ]);
-
-      # categories store
-      Route::post('categories/store', [
-        'uses'  => 'CategoryController@store',
-        'as'    => 'categories.store',
-        'title' => ' اضافة تصنيف',
-      ]);
-
-      # categories update
-      Route::get('categories/{id}/edit', [
-        'uses'  => 'CategoryController@edit',
-        'as'    => 'categories.edit',
-        'title' => 'صفحه تحديث تصنيف',
-      ]);
-
-      # categories update
-      Route::put('categories/{id}', [
-        'uses'  => 'CategoryController@update',
-        'as'    => 'categories.update',
-        'title' => 'تحديث تصنيف',
-      ]);
-
-      Route::get('categories/{id}/show', [
-        'uses'  => 'CategoryController@show',
-        'as'    => 'categories.show',
-        'title' => 'عرض تصنيف',
-      ]);
-
-      # categories delete
-      Route::delete('categories/{id}', [
-        'uses'  => 'CategoryController@destroy',
-        'as'    => 'categories.delete',
-        'title' => 'حذف تصنيف',
-      ]);
-      #delete all categories
-      Route::post('delete-all-categories', [
-        'uses'  => 'CategoryController@destroyAll',
-        'as'    => 'categories.deleteAll',
-        'title' => 'حذف مجموعه من التصنيفات',
-      ]);
-    /*------------ end Of categories ----------*/
-
-    /*------------ start Of coupons ----------*/
-      Route::get('coupons', [
-        'uses'      => 'CouponController@index',
-        'as'        => 'coupons.index',
-        'title'     => 'كوبونات الخصم',
-        'icon'      => '<i class="fa fa-gift"></i>',
-        'type'      => 'parent',
-        'sub_route' => false,
-        'child'     => ['coupons.show', 'coupons.create', 'coupons.store', 'coupons.edit', 'coupons.update', 'coupons.delete', 'coupons.deleteAll', 'coupons.renew'],
-      ]);
-
-      Route::get('coupons/{id}/show', [
-        'uses'  => 'CouponController@show',
-        'as'    => 'coupons.show',
-        'title' => 'عرض  كوبون خصم',
-      ]);
-
-      # coupons store
-      Route::get('coupons/create', [
-        'uses'  => 'CouponController@create',
-        'as'    => 'coupons.create',
-        'title' => ' صفحة اضافة كوبون خصم',
-      ]);
-
-      # coupons store
-      Route::post('coupons/store', [
-        'uses'  => 'CouponController@store',
-        'as'    => 'coupons.store',
-        'title' => ' اضافة كوبون خصم',
-      ]);
-
-      # coupons update
-      Route::get('coupons/{id}/edit', [
-        'uses'  => 'CouponController@edit',
-        'as'    => 'coupons.edit',
-        'title' => 'صفحه تحديث كوبون خصم',
-      ]);
-
-      # coupons update
-      Route::put('coupons/{id}', [
-        'uses'  => 'CouponController@update',
-        'as'    => 'coupons.update',
-        'title' => 'تحديث كوبون خصم',
-      ]);
-
-      # renew coupon
-      Route::post('coupons/renew', [
-        'uses'  => 'CouponController@renew',
-        'as'    => 'coupons.renew',
-        'title' => 'تحديث حالة كوبون خصم',
-      ]);
-
-      # coupons delete
-      Route::delete('coupons/{id}', [
-        'uses'  => 'CouponController@destroy',
-        'as'    => 'coupons.delete',
-        'title' => 'حذف كوبون خصم',
-      ]);
-      #delete all coupons
-      Route::post('delete-all-coupons', [
-        'uses'  => 'CouponController@destroyAll',
-        'as'    => 'coupons.deleteAll',
-        'title' => 'حذف مجموعه من كوبونات الخصم',
-      ]);
-    /*------------ end Of coupons ----------*/
 
 
 
@@ -716,128 +836,8 @@ Route::group([
     /*------------ end Of Settings ----------*/                     
     
     
-    /*------------ start Of products ----------*/
-        Route::get('products', [
-            'uses'      => 'ProductController@index',
-            'as'        => 'products.index',
-            'title'     => 'المنتجات',
-            'icon'      => '<i class="feather icon-image"></i>',
-            'type'      => 'parent',
-            'sub_route' => false,
-            'child'     => ['products.create', 'products.store','products.edit', 'products.update', 'products.show', 'products.delete'  ,'products.deleteAll' ,]
-        ]);
 
-        # products store
-        Route::get('products/create', [
-            'uses'  => 'ProductController@create',
-            'as'    => 'products.create',
-            'title' => ' صفحة اضافة منتج'
-        ]);
-        
 
-        # products store
-        Route::post('products/store', [
-            'uses'  => 'ProductController@store',
-            'as'    => 'products.store',
-            'title' => ' اضافة منتج'
-        ]);
-
-        # products update
-        Route::get('products/{id}/edit', [
-            'uses'  => 'ProductController@edit',
-            'as'    => 'products.edit',
-            'title' => 'صفحه تحديث منتج'
-        ]);
-
-        # products update
-        Route::put('products/{id}', [
-            'uses'  => 'ProductController@update',
-            'as'    => 'products.update',
-            'title' => 'تحديث منتج'
-        ]);
-
-        # products show
-        Route::get('products/{id}/Show', [
-            'uses'  => 'ProductController@show',
-            'as'    => 'products.show',
-            'title' => 'صفحه عرض  منتج  '
-        ]);
-
-        # products delete
-        Route::delete('products/{id}', [
-            'uses'  => 'ProductController@destroy',
-            'as'    => 'products.delete',
-            'title' => 'حذف منتج'
-        ]);
-        #delete all products
-        Route::post('delete-all-products', [
-            'uses'  => 'ProductController@destroyAll',
-            'as'    => 'products.deleteAll',
-            'title' => 'حذف مجموعه من منتجات'
-        ]);
-    /*------------ end Of products ----------*/
-    
-    /*------------ start Of brands ----------*/
-        Route::get('brands', [
-            'uses'      => 'BrandController@index',
-            'as'        => 'brands.index',
-            'title'     => 'ماركات',
-            'icon'      => '<i class="feather icon-image"></i>',
-            'type'      => 'parent',
-            'sub_route' => false,
-            'child'     => ['brands.create', 'brands.store','brands.edit', 'brands.update', 'brands.show', 'brands.delete'  ,'brands.deleteAll' ,]
-        ]);
-
-        # brands store
-        Route::get('brands/create', [
-            'uses'  => 'BrandController@create',
-            'as'    => 'brands.create',
-            'title' => ' صفحة اضافة ماركه'
-        ]);
-        
-
-        # brands store
-        Route::post('brands/store', [
-            'uses'  => 'BrandController@store',
-            'as'    => 'brands.store',
-            'title' => ' اضافة ماركه'
-        ]);
-
-        # brands update
-        Route::get('brands/{id}/edit', [
-            'uses'  => 'BrandController@edit',
-            'as'    => 'brands.edit',
-            'title' => 'صفحه تحديث ماركه'
-        ]);
-
-        # brands update
-        Route::put('brands/{id}', [
-            'uses'  => 'BrandController@update',
-            'as'    => 'brands.update',
-            'title' => 'تحديث ماركه'
-        ]);
-
-        # brands show
-        Route::get('brands/{id}/Show', [
-            'uses'  => 'BrandController@show',
-            'as'    => 'brands.show',
-            'title' => 'صفحه عرض  ماركه  '
-        ]);
-
-        # brands delete
-        Route::delete('brands/{id}', [
-            'uses'  => 'BrandController@destroy',
-            'as'    => 'brands.delete',
-            'title' => 'حذف ماركه'
-        ]);
-        #delete all brands
-        Route::post('delete-all-brands', [
-            'uses'  => 'BrandController@destroyAll',
-            'as'    => 'brands.deleteAll',
-            'title' => 'حذف مجموعه من ماركات'
-        ]);
-    /*------------ end Of brands ----------*/
-    
 
     /*------------ start Of deliveryareas ----------*/
         Route::get('deliveryareas', [

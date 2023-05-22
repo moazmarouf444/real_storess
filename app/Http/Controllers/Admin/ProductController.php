@@ -42,8 +42,8 @@ class ProductController extends Controller
         $product =   Product::create($request->validated()+ ['is_active' => $request->is_active]);
         if ($request->images) {
             foreach ($request->images as $file) {
-                $product->photo()->create([
-                    'file' => $file
+                $product->photos()->create([
+                    'image' => $file
                 ]);
             }
         }
@@ -53,20 +53,34 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        return view('admin.products.edit' , ['product' => $product]);
+        $brands = Brand::active()->select('id','name')->get();
+        $categories = Category::select('id','name')->get();
+
+        return view('admin.products.edit', compact('product','categories','brands'));
     }
 
     public function update(Update $request, $id)
     {
         $product = Product::findOrFail($id)->update($request->validated());
+        if ($request->images) {
+            foreach ($request->images as $file) {
+                $product->photos()->updateOrCreate([
+                    'image' => $file
+                ]);
+            }
+        }
+
         Report::addToLog('  تعديل منتج') ;
         return response()->json(['url' => route('admin.products.index')]);
     }
 
     public function show($id)
     {
+        $brands = Brand::active()->select('id','name')->get();
+        $categories = Category::select('id','name')->get();
+
         $product = Product::findOrFail($id);
-        return view('admin.products.show' , ['product' => $product]);
+        return view('admin.products.show' , compact('product','categories','brands'));
     }
     public function destroy($id)
     {
