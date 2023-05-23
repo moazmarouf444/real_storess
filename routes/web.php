@@ -167,6 +167,65 @@ Route::group([
       ]);
 
     /************ #Admins ************/
+      /*------------ start Of orders ----------*/
+      Route::get('orders', [
+          'uses'      => 'OrderController@index',
+          'as'        => 'orders.index',
+          'title'     => 'الطلبات',
+          'icon'      => '<i class="feather icon-image"></i>',
+          'type'      => 'parent',
+          'sub_route' => true,
+          'child'     => ['orders.current', 'orders.finished', 'orders.cancelled', 'orders.show', 'orders.delete'  ,'orders.deleteAll' ,]
+      ]);
+
+      # orders store
+      Route::get('orders-current', [
+              'uses' => 'OrderController@orderCurrent',
+          'as' => 'orders.current',
+          'icon' => '<i class="la la-user"></i>',
+
+          'title' => 'صفحه الطلبات الحاليه',
+      ]);
+
+
+      Route::get('orders-finished', [
+          'uses' => 'OrderController@orderFinished',
+          'as' => 'orders.finished',
+          'icon' => '<i class="la la-user"></i>',
+
+          'title' => 'صفحه الطلبات المكتمله',
+      ]);
+
+      Route::get('orders-cancelled', [
+          'uses' => 'OrderController@orderCancelled',
+          'as' => 'orders.cancelled',
+          'icon' => '<i class="la la-user"></i>',
+          'title' => 'صفحه الطلبات الملغاه',
+      ]);
+
+
+      # orders show
+      Route::get('orders/{id}/Show', [
+          'uses'  => 'OrderController@show',
+          'as'    => 'orders.show',
+          'title' => 'صفحه عرض  طلب  '
+      ]);
+
+      # orders delete
+      Route::delete('orders/{id}', [
+          'uses'  => 'OrderController@destroy',
+          'as'    => 'orders.delete',
+          'title' => 'حذف طلب'
+      ]);
+      #delete all orders
+      Route::post('delete-all-orders', [
+          'uses'  => 'OrderController@destroyAll',
+          'as'    => 'orders.deleteAll',
+          'title' => 'حذف مجموعه من طلبات'
+      ]);
+      /*------------ end Of orders ----------*/
+
+
       /*------------ start Of products ----------*/
       Route::get('products', [
           'uses'      => 'ProductController@index',
@@ -351,6 +410,68 @@ Route::group([
           'title' => 'حذف مجموعه من ماركات'
       ]);
       /*------------ end Of brands ----------*/
+
+      /*------------ start Of deliveryareas ----------*/
+      Route::get('deliveryareas', [
+          'uses'      => 'DeliveryAreaController@index',
+          'as'        => 'deliveryareas.index',
+          'title'     => 'مناطق التوصيل',
+          'icon'      => '<i class="feather icon-image"></i>',
+          'type'      => 'parent',
+          'sub_route' => false,
+          'child'     => ['deliveryareas.create', 'deliveryareas.store','deliveryareas.edit', 'deliveryareas.update', 'deliveryareas.show', 'deliveryareas.delete'  ,'deliveryareas.deleteAll' ,]
+      ]);
+
+      # deliveryareas store
+      Route::get('deliveryareas/create', [
+          'uses'  => 'DeliveryAreaController@create',
+          'as'    => 'deliveryareas.create',
+          'title' => ' صفحة اضافة منطقه توصيل'
+      ]);
+
+
+      # deliveryareas store
+      Route::post('deliveryareas/store', [
+          'uses'  => 'DeliveryAreaController@store',
+          'as'    => 'deliveryareas.store',
+          'title' => ' اضافة منطقه توصيل'
+      ]);
+
+      # deliveryareas update
+      Route::get('deliveryareas/{id}/edit', [
+          'uses'  => 'DeliveryAreaController@edit',
+          'as'    => 'deliveryareas.edit',
+          'title' => 'صفحه تحديث منطقه توصيل'
+      ]);
+
+      # deliveryareas update
+      Route::put('deliveryareas/{id}', [
+          'uses'  => 'DeliveryAreaController@update',
+          'as'    => 'deliveryareas.update',
+          'title' => 'تحديث منطقه توصيل'
+      ]);
+
+      # deliveryareas show
+      Route::get('deliveryareas/{id}/Show', [
+          'uses'  => 'DeliveryAreaController@show',
+          'as'    => 'deliveryareas.show',
+          'title' => 'صفحه عرض  منطقه توصيل  '
+      ]);
+
+      # deliveryareas delete
+      Route::delete('deliveryareas/{id}', [
+          'uses'  => 'DeliveryAreaController@destroy',
+          'as'    => 'deliveryareas.delete',
+          'title' => 'حذف منطقه توصيل'
+      ]);
+      #delete all deliveryareas
+      Route::post('delete-all-deliveryareas', [
+          'uses'  => 'DeliveryAreaController@destroyAll',
+          'as'    => 'deliveryareas.deleteAll',
+          'title' => 'حذف مجموعه من مناطق التوصيل'
+      ]);
+      /*------------ end Of deliveryareas ----------*/
+
       /*------------ start Of coupons ----------*/
       Route::get('coupons', [
           'uses'      => 'CouponController@index',
@@ -834,76 +955,7 @@ Route::group([
         'title' => 'ارسال ايميل',
       ]);
     /*------------ end Of Settings ----------*/                     
-    
-    
-
-
-
-    /*------------ start Of deliveryareas ----------*/
-        Route::get('deliveryareas', [
-            'uses'      => 'DeliveryAreaController@index',
-            'as'        => 'deliveryareas.index',
-            'title'     => 'مناطق التوصيل',
-            'icon'      => '<i class="feather icon-image"></i>',
-            'type'      => 'parent',
-            'sub_route' => false,
-            'child'     => ['deliveryareas.create', 'deliveryareas.store','deliveryareas.edit', 'deliveryareas.update', 'deliveryareas.show', 'deliveryareas.delete'  ,'deliveryareas.deleteAll' ,]
-        ]);
-
-        # deliveryareas store
-        Route::get('deliveryareas/create', [
-            'uses'  => 'DeliveryAreaController@create',
-            'as'    => 'deliveryareas.create',
-            'title' => ' صفحة اضافة منطقه توصيل'
-        ]);
-        
-
-        # deliveryareas store
-        Route::post('deliveryareas/store', [
-            'uses'  => 'DeliveryAreaController@store',
-            'as'    => 'deliveryareas.store',
-            'title' => ' اضافة منطقه توصيل'
-        ]);
-
-        # deliveryareas update
-        Route::get('deliveryareas/{id}/edit', [
-            'uses'  => 'DeliveryAreaController@edit',
-            'as'    => 'deliveryareas.edit',
-            'title' => 'صفحه تحديث منطقه توصيل'
-        ]);
-
-        # deliveryareas update
-        Route::put('deliveryareas/{id}', [
-            'uses'  => 'DeliveryAreaController@update',
-            'as'    => 'deliveryareas.update',
-            'title' => 'تحديث منطقه توصيل'
-        ]);
-
-        # deliveryareas show
-        Route::get('deliveryareas/{id}/Show', [
-            'uses'  => 'DeliveryAreaController@show',
-            'as'    => 'deliveryareas.show',
-            'title' => 'صفحه عرض  منطقه توصيل  '
-        ]);
-
-        # deliveryareas delete
-        Route::delete('deliveryareas/{id}', [
-            'uses'  => 'DeliveryAreaController@destroy',
-            'as'    => 'deliveryareas.delete',
-            'title' => 'حذف منطقه توصيل'
-        ]);
-        #delete all deliveryareas
-        Route::post('delete-all-deliveryareas', [
-            'uses'  => 'DeliveryAreaController@destroyAll',
-            'as'    => 'deliveryareas.deleteAll',
-            'title' => 'حذف مجموعه من مناطق التوصيل'
-        ]);
-    /*------------ end Of deliveryareas ----------*/
     #new_routes_here
-                     
-                     
-                     
-                     
   });
 
 });

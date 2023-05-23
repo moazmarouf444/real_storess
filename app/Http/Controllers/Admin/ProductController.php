@@ -64,7 +64,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id)->update($request->validated());
         if ($request->images) {
             foreach ($request->images as $file) {
-                $product->photos()->updateOrCreate([
+                $product->photos()->create([
                     'image' => $file
                 ]);
             }

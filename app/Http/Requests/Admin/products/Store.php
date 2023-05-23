@@ -16,8 +16,8 @@ class Store extends FormRequest
         return [
             'name.ar'                  => 'required|max:191',
             'name.en'                  => 'required|max:191',
-            'description.ar'                  => 'required',
-            'description.en'                  => 'required',
+            'description.ar'                  => 'nullable',
+            'description.en'                  => 'nullable',
             'price' => 'required|min:0',
             'qty' => 'required|min:0',
             'is_active' => 'required|in:0,1',

@@ -186,33 +186,13 @@
                                                 @include('admin.includes.alerts.input-errors', ['input' => "description.$lang"])
 
                                                 <label for="account-name">{{__('site.description_'.$lang)}}</label>
-                                                <textarea required class="form-control" name="description[{{$lang}}]"
+                                                <textarea  class="form-control" name="description[{{$lang}}]"
                                                           id="description[{{$lang}}]" cols="30" rows="10"
-                                                          data-validation-required-message="{{awtTrans('هذا الحقل مطلوب')}}"
                                                           placeholder="{{awtTrans('الوصف')}}">{!! $product->description !!}</textarea>
                                             </div>
 
                                         </div>
                                     @endforeach
-                                        <div class="col-12">
-                                            <h4 class="card-title text-center">{{awtTrans('تعديل صور المنتج')}}</h4>
-                                            <div class="d-flex flex-wrap align-items-center file_alotImage mb-3">
-                                                <div class="upload_alotImg">
-                                                    <span>+</span>
-                                                    <input class="img-input" id="up-img-all" type="file" accept="image/*" name="images[]" multiple />
-                                                </div>
-                                                @foreach($product->photos as $file)
-                                                    <div class="img-uploaded-one">
-                                                        <button class="remove-appendedd delete-image" data-value="{{$file->id}}">X</button>
-                                                        <img src="{{$file->image}}" alt="">
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                            @error('images')
-                                            <span class="text-danger">{{$message}}</span>
-                                            @enderror
-                                        </div>
-
 
                                     <div class="col-12 d-flex justify-content-center mt-3">
                                         <button type="submit"
